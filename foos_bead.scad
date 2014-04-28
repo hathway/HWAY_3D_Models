@@ -1,7 +1,7 @@
 
 
 module large_disc() {
-	translate([0,-6,0]) circle(r=14, $fn=200);
+	translate([0,-6,0]) circle(r=13, $fn=200);
 }
 module small_disc() {
 	translate([11,0,0]) circle(r=3, $fn=200);
@@ -29,11 +29,16 @@ module quarter() {
 //large_disc();
 //small_disc();
 //middle_rectangle();
+//pieces();
 //quarter();
 
-
-rotate_extrude(convexity=10, $fn=200)
-union() {
-	quarter();
-	mirror([0,1,0]) quarter();
+module bead() {
+	color("Chocolate")
+	rotate_extrude(convexity=10, $fn=200)
+	union() {
+		quarter();
+		mirror([0,1,0]) quarter();
+	}
 }
+
+bead();
