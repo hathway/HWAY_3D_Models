@@ -39,7 +39,7 @@ module bar_hole() {
 module grip_cylinder() {
 	translate([-20, -49, handle_length - 36])
 	rotate([0,90,0])
-	cylinder(r=38, h=40, $fn=200);
+	cylinder(r=38, h=40, $fn=100);
 }
 
 module grip_cylinders() {
@@ -62,7 +62,7 @@ module bolt_head() {
 
 module thumb_hole() {
 	translate([0,-48,handle_length-25])
-	sphere(r=38, $fn=200);
+	sphere(r=38, $fn=100);
 }
 
 module handle() {
