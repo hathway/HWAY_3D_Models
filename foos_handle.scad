@@ -36,17 +36,45 @@ module bar_hole() {
 	cylinder(r=8.5, h=hole_length+5);
 }
 
-module rounded_handle_body() {
+module grip_cylinder() {
+	translate([-20, -49, handle_length - 36])
+	rotate([0,90,0])
+	cylinder(r=38, h=40, $fn=200);
+}
+
+module grip_cylinders() {
+	for (angle = [0:7]) {
+		rotate([0,0,angle*45]) grip_cylinder();
+	}
+}
+
+module bolt_hole() {
+	translate([0,0,handle_length-71])
+	rotate([0,90,0])
+	cylinder(r=3, h=20);
+}
+
+module bolt_head() {
+	translate([14,0,handle_length-71])
+	rotate([0,90,0])
+	cylinder(r=5, h=4);
+}
+
+module thumb_hole() {
+	translate([0,-48,handle_length-25])
+	sphere(r=38, $fn=200);
+}
+
+module handle() {
 	difference() {
 		handle_body();
 		rounded_end();
 		bar_hole();
+		grip_cylinders();
+		thumb_hole();
+		bolt_hole();
+		bolt_head();
 	}
 }
 
-module handle() {
-	rounded_handle_body();
-}
-
-color("Chocolate")
-handle();
+color("Chocolate") handle();
